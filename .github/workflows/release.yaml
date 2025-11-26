@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - run: pip install "jupyterlab>=4.0.0,<5"
       - run: jlpm install
       - run: jlpm build:prod
       - run: pip install build
