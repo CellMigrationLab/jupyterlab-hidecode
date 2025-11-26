@@ -4,11 +4,11 @@
     https://jupyterlab.readthedocs.io/en/stable/developer/css.html
 */
 
-.jp-labchronicle-hidecode-locked .jp-InputPlaceholder {
+.jp-labchronicle-hidecode-locked .jp-input-placeholder {
   font-style: italic;
 }
 
-.jp-labchronicle-hidecode-locked .jp-Collapser {
+.jp-labchronicle-hidecode-locked .jp-collapser {
   position: relative;
 }
 
