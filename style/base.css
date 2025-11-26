@@ -1,0 +1,72 @@
+/*
+    See the JupyterLab Developer Guide for useful CSS Patterns:
+
+    https://jupyterlab.readthedocs.io/en/stable/developer/css.html
+*/
+
+.jp-labchronicleHideCodeLocked .jp-InputPlaceholder {
+  font-style: italic;
+}
+
+.jp-labchronicleHideCodeLocked .jp-Collapser {
+  position: relative;
+}
+
+.jp-labchronicleRunButton {
+  border: none;
+  background: var(--jp-ui-font-color1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  color: var(--jp-layout-color0);
+  opacity: 0.95;
+  position: absolute;
+  top: 6px;
+  left: 32px;
+  width: 18px;
+  height: 18px;
+  z-index: 2;
+  pointer-events: auto;
+  border-radius: 50%;
+  transition: opacity 0.15s ease;
+}
+
+.jp-labchronicleRunButton:hover,
+.jp-labchronicleRunButton:focus {
+  opacity: 1;
+}
+
+.jp-labchronicleRunButton:focus {
+  outline: 1px solid var(--jp-border-color1);
+}
+
+.jp-labchronicleRunButton-icon {
+  width: 12px;
+  height: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jp-labchronicleRunButton-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--jp-layout-color0);
+}
+
+.jp-labchronicleShowCodeButton {
+  background-color: var(--jp-layout-color1);
+  border: 1px solid var(--jp-ui-font-color2);
+  border-radius: 4px;
+  padding: 2px 10px;
+  min-height: auto;
+  font-size: 12px;
+}
+
+.jp-labchronicleShowCodeButton:hover,
+.jp-labchronicleShowCodeButton:focus {
+  border-color: var(--jp-brand-color1);
+  color: var(--jp-brand-color1);
+}

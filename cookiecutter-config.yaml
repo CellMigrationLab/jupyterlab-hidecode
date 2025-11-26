@@ -1,0 +1,12 @@
+default_context:
+  kind: frontend
+  author_name: LabChronicle
+  author_email: team@labchronicle.com
+  labextension_name: labchronicle-hidecode
+  python_name: labchronicle_hidecode
+  project_short_description: Hide/show notebook inputs and surface LabChronicle-style parameter widgets in JupyterLab.
+  has_settings: y
+  has_binder: n
+  test: y
+  repository: https://github.com/LabChronicle/labchronicle-jupyterlab-hidecode
+

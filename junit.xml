@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="1" failures="0" errors="0" time="5.877">
+  <testsuite name="labchronicle-hidecode" errors="0" failures="0" skipped="0" timestamp="2025-11-26T08:24:17" time="3.903" tests="1">
+    <testcase classname="labchronicle-hidecode should be tested" name="labchronicle-hidecode should be tested" time="0.005">
+    </testcase>
+  </testsuite>
+</testsuites>
