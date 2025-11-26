@@ -4,7 +4,11 @@ import {
 } from '@jupyterlab/application';
 import { ICommandPalette, ToolbarButton } from '@jupyterlab/apputils';
 import { Cell } from '@jupyterlab/cells';
-import { INotebookTracker, NotebookActions, NotebookPanel } from '@jupyterlab/notebook';
+import {
+  INotebookTracker,
+  NotebookActions,
+  NotebookPanel
+} from '@jupyterlab/notebook';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { JSONExt, JSONObject, JSONValue } from '@lumino/coreutils';
 
@@ -51,7 +55,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
 
     let settingsSnapshot: HidecodeSettings = { ...DEFAULT_SETTINGS };
 
-    const mergeSettings = (raw: Partial<HidecodeSettings> | undefined): HidecodeSettings => ({
+    const mergeSettings = (
+      raw: Partial<HidecodeSettings> | undefined
+    ): HidecodeSettings => ({
       ...DEFAULT_SETTINGS,
       ...(raw ?? {})
     });
@@ -61,7 +67,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
     };
 
     const syncSettings = (settings?: ISettingRegistry.ISettings) => {
-      const composite = (settings?.composite ?? {}) as Partial<HidecodeSettings>;
+      const composite = (settings?.composite ??
+        {}) as Partial<HidecodeSettings>;
       settingsSnapshot = mergeSettings(composite);
       applySettingsToOpen();
     };
@@ -74,7 +81,10 @@ const plugin: JupyterFrontEndPlugin<void> = {
           loaded.changed.connect(() => syncSettings(loaded));
         })
         .catch(reason => {
-          console.error('Failed to load settings for labchronicle-hidecode.', reason);
+          console.error(
+            'Failed to load settings for labchronicle-hidecode.',
+            reason
+          );
         });
     }
 
@@ -86,7 +96,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
     };
 
     const getHidecodeMeta = (cell: Cell): HidecodeMeta => {
-      const current = cell.model.getMetadata(HIDECODE_META_KEY) as JSONValue | undefined;
+      const current = cell.model.getMetadata(HIDECODE_META_KEY) as
+        | JSONValue
+        | undefined;
       const json = toJSONObject(current) as HidecodeMeta;
       return { locked: json.locked === true };
     };
@@ -101,16 +113,23 @@ const plugin: JupyterFrontEndPlugin<void> = {
       }
     };
 
-    const isCellLocked = (cell: Cell): boolean => getHidecodeMeta(cell).locked === true;
+    const isCellLocked = (cell: Cell): boolean =>
+      getHidecodeMeta(cell).locked === true;
 
     const ensureMetadataState = (cell: Cell, hidden: boolean) => {
-      const current = cell.model.getMetadata('jupyter') as JSONValue | undefined;
+      const current = cell.model.getMetadata('jupyter') as
+        | JSONValue
+        | undefined;
       const jupyterMeta = toJSONObject(current);
       jupyterMeta.source_hidden = hidden;
       cell.model.setMetadata('jupyter', jupyterMeta);
     };
 
-    const setCellInputHidden = (cell: Cell, hidden: boolean, lockState?: boolean) => {
+    const setCellInputHidden = (
+      cell: Cell,
+      hidden: boolean,
+      lockState?: boolean
+    ) => {
       if (cell.inputHidden === hidden) {
         ensureMetadataState(cell, hidden);
         if (lockState !== undefined) {
@@ -144,7 +163,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
     };
 
     const ensureRunButton = (panel: NotebookPanel, cell: Cell) => {
-      const collapser = cell.node.querySelector('.jp-InputCollapser') as HTMLElement | null;
+      const collapser = cell.node.querySelector(
+        '.jp-InputCollapser'
+      ) as HTMLElement | null;
       if (!collapser) {
         if (!collapserWatchers.has(cell) && !cell.isDisposed) {
           const observer = new MutationObserver(() => {
@@ -153,7 +174,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
               collapserWatchers.delete(cell);
               return;
             }
-            const maybeCollapser = cell.node.querySelector('.jp-InputCollapser');
+            const maybeCollapser =
+              cell.node.querySelector('.jp-InputCollapser');
             if (maybeCollapser) {
               observer.disconnect();
               collapserWatchers.delete(cell);
@@ -170,7 +192,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
         return;
       }
 
-      const existing = collapser.querySelector(`.${RUN_BUTTON_CLASS}`) as HTMLButtonElement | null;
+      const existing = collapser.querySelector(
+        `.${RUN_BUTTON_CLASS}`
+      ) as HTMLButtonElement | null;
       let button = existing ?? document.createElement('button');
       if (!existing) {
         button.type = 'button';
@@ -270,7 +294,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
         if (!cellNode) {
           return;
         }
-        const cell = panel.content.widgets.find(widget => widget.node === cellNode);
+        const cell = panel.content.widgets.find(
+          widget => widget.node === cellNode
+        );
         if (cell && isCellLocked(cell)) {
           requestAnimationFrame(() => enforceLockedState(panel, cell));
         }
@@ -292,7 +318,10 @@ const plugin: JupyterFrontEndPlugin<void> = {
       caption: 'Collapse or expand the current cell input area',
       execute: () => toggleActiveCellInput()
     });
-    palette.addItem({ category: CATEGORY, command: CommandIDs.toggleActiveCell });
+    palette.addItem({
+      category: CATEGORY,
+      command: CommandIDs.toggleActiveCell
+    });
 
     app.commands.addCommand(CommandIDs.applyHideTag, {
       label: 'Hide cells tagged for LabChronicle',
