@@ -26,6 +26,7 @@ const DEFAULT_SETTINGS: HidecodeSettings = {
 const HIDECODE_META_KEY = 'labchronicleHideCode';
 const LOCKED_CLASS = 'jp-labchronicleHideCodeLocked';
 const RUN_BUTTON_CLASS = 'jp-labchronicleRunButton';
+const RUN_BUTTON_RUNNING_CLASS = 'jp-labchronicleRunButtonRunning';
 const CATEGORY = 'LabChronicle / Hide Code';
 
 type HidecodeMeta = {
@@ -154,9 +155,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
         return;
       }
 
-      let button = collapser.querySelector(`.${RUN_BUTTON_CLASS}`) as HTMLButtonElement | null;
-      if (!button) {
-        button = document.createElement('button');
+      const existing = collapser.querySelector(`.${RUN_BUTTON_CLASS}`) as HTMLButtonElement | null;
+      let button = existing ?? document.createElement('button');
+      if (!existing) {
         button.type = 'button';
         button.classList.add(RUN_BUTTON_CLASS);
         button.setAttribute('aria-label', 'Run hidden cell');
@@ -170,10 +171,14 @@ const plugin: JupyterFrontEndPlugin<void> = {
           event.stopPropagation();
           void (async () => {
             try {
+              button.classList.add(RUN_BUTTON_RUNNING_CLASS);
+              button.disabled = true;
               await runCell(panel, cell);
             } catch (error) {
               console.error('Failed to run hidden cell', error);
             } finally {
+              button.classList.remove(RUN_BUTTON_RUNNING_CLASS);
+              button.disabled = false;
               enforceLockedState(panel, cell);
             }
           })();
