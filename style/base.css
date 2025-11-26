@@ -79,6 +79,7 @@
   transform: translate(-50%, -50%);
 }
 
+
 @keyframes jp-labchronicle-spinner {
   from {
     transform: rotate(0deg);
@@ -87,6 +88,7 @@
     transform: rotate(360deg);
   }
 }
+
 
 @keyframes jp-labchronicle-run-pulse {
   0%,
