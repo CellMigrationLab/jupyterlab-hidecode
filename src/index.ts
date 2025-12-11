@@ -13,8 +13,8 @@ import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { JSONExt, JSONObject, JSONValue } from '@lumino/coreutils';
 
 namespace CommandIDs {
-  export const toggleActiveCell = 'labchronicle-hidecode:toggle-active-cell';
-  export const applyHideTag = 'labchronicle-hidecode:apply-hide-tag';
+  export const toggleActiveCell = 'jupyterlab-hidecode:toggle-active-cell';
+  export const applyHideTag = 'jupyterlab-hidecode:apply-hide-tag';
 }
 
 interface HidecodeSettings {
@@ -27,21 +27,21 @@ const DEFAULT_SETTINGS: HidecodeSettings = {
   hideTag: 'hide_input'
 };
 
-const HIDECODE_META_KEY = 'labchronicleHideCode';
-const LOCKED_CLASS = 'jp-labchronicle-hidecode-locked';
-const RUN_BUTTON_CLASS = 'jp-labchronicle-run-button';
-const RUN_BUTTON_RUNNING_CLASS = 'jp-labchronicle-run-button-running';
+const HIDECODE_META_KEY = 'jupyterlabHideCode';
+const LOCKED_CLASS = 'jp-jupyterlab-hidecode-locked';
+const RUN_BUTTON_CLASS = 'jp-jupyterlab-run-button';
+const RUN_BUTTON_RUNNING_CLASS = 'jp-jupyterlab-run-button-running';
 const collapserWatchers = new WeakMap<Cell, MutationObserver>();
-const CATEGORY = 'LabChronicle / Hide Code';
+const CATEGORY = 'JupyterLab Hide Code';
 
 type HidecodeMeta = {
   locked?: boolean;
 };
 
 const plugin: JupyterFrontEndPlugin<void> = {
-  id: 'labchronicle-hidecode:plugin',
+  id: 'jupyterlab-hidecode:plugin',
   description:
-    'Hide/show notebook inputs and surface LabChronicle-style parameter widgets in JupyterLab.',
+    'Hide/show notebook inputs and surface JupyterLab Hide Code-style parameter widgets in JupyterLab.',
   autoStart: true,
   requires: [INotebookTracker, ICommandPalette],
   optional: [ISettingRegistry],
@@ -51,7 +51,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
     palette: ICommandPalette,
     settingRegistry: ISettingRegistry | null
   ) => {
-    console.log('JupyterLab extension labchronicle-hidecode is activated!');
+    console.log('JupyterLab extension jupyterlab-hidecode is activated!');
 
     let settingsSnapshot: HidecodeSettings = { ...DEFAULT_SETTINGS };
 
@@ -82,7 +82,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
         })
         .catch(reason => {
           console.error(
-            'Failed to load settings for labchronicle-hidecode.',
+            'Failed to load settings for jupyterlab-hidecode.',
             reason
           );
         });
@@ -324,7 +324,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
     });
 
     app.commands.addCommand(CommandIDs.applyHideTag, {
-      label: 'Hide cells tagged for LabChronicle',
+      label: 'Hide cells tagged for hiding',
       caption: 'Collapse all cells that contain the configured hide tag',
       execute: () => {
         const notebook = tracker.currentWidget;
@@ -338,11 +338,11 @@ const plugin: JupyterFrontEndPlugin<void> = {
     tracker.widgetAdded.connect((_, panel) => {
       const toggleButton = new ToolbarButton({
         label: 'Show/Hide code',
-        className: 'jp-labchronicle-show-code-button',
-        tooltip: 'LabChronicle: hide/show active cell input',
+        className: 'jp-jupyterlab-show-code-button',
+        tooltip: 'JupyterLab Hide Code: hide/show active cell input',
         onClick: () => toggleActiveCellInput(panel)
       });
-      panel.toolbar.insertItem(10, 'labchronicleHideInput', toggleButton);
+      panel.toolbar.insertItem(10, 'jupyterlabHideInput', toggleButton);
 
       const enforceActiveCell = () => {
         const active = panel.content.activeCell;

@@ -1,15 +1,14 @@
-# LabChronicle Hide Code
+# JupyterLab Hide Code
 
-[![labchronicle-hidecode](https://labextensions.dev/api/badge/labchronicle-hidecode?metric=downloads&leftColor=%23555&rightColor=%23F37620&style=flat)](https://labextensions.dev/extensions/labchronicle-hidecode)
+[![jupyterlab-hidecode](https://labextensions.dev/api/badge/jupyterlab-hidecode?metric=downloads&leftColor=%23555&rightColor=%23F37620&style=flat)](https://labextensions.dev/extensions/jupyterlab-hidecode)
 
-Hide/show notebook inputs and surface LabChronicle-style parameter widgets in JupyterLab.
-
+Hide/show notebook inputs with a Colab-like play button parameter widgets in JupyterLab.
 ## Features
 
 - Toolbar button and command (`Accel+Shift+H`) to hide/show the active cell input without touching metadata manually.
 - Command to collapse every cell tagged with the configured hide tag (defaults to `hide_input` so it stays compatible with the classic `hide_input` nbextension).
-- Optional auto-hide when a notebook opens; this lets LabChronicle distribute notebooks that arrive already collapsed but can be expanded on demand.
-- Hidden cells stay locked even if you click into them—only the LabChronicle shortcut/button changes their visibility, preventing accidental uncollapse while reading.
+- Optional auto-hide when a notebook opens; this lets JupyterLab Hide Code distribute notebooks that arrive already collapsed but can be expanded on demand.
+- Hidden cells stay locked even if you click into them—only the JupyterLab Hide Code shortcut/button changes their visibility, preventing accidental uncollapse while reading.
 - Locked cells get a small “run” affordance next to the collapser so you can execute them in place without expanding the code.
 - Settings exposed through JupyterLab’s Advanced Settings Editor to change the tag name or disable the auto-hide behavior altogether.
 
@@ -18,8 +17,8 @@ Hide/show notebook inputs and surface LabChronicle-style parameter widgets in Ju
 1. Install the extension (instructions below) and restart JupyterLab.
 2. Tag any cells you would like hidden by default via **View → Cell Toolbar → Tags** and add the tag specified in the settings (`hide_input` by default).
 3. Use the notebook toolbar button (or press `Accel+Shift+H`) to toggle the currently active cell.
-4. Hit the “LabChronicle: Hide cells tagged for LabChronicle” command from the palette to apply the rule to the whole notebook on demand.
-5. Tweak defaults under **Settings → Advanced Settings Editor → LabChronicle Hide Code**.
+4. Hit the “JupyterLab Hide Code: Hide cells tagged for JupyterLab Hide Code” command from the palette to apply the rule to the whole notebook on demand.
+5. Tweak defaults under **Settings → Advanced Settings Editor → JupyterLab Hide Code**.
 
 ## Requirements
 
@@ -30,7 +29,7 @@ Hide/show notebook inputs and surface LabChronicle-style parameter widgets in Ju
 To install the extension, execute:
 
 ```bash
-pip install labchronicle_hidecode
+pip install jupyterlab_hidecode
 ```
 
 ## Uninstall
@@ -38,7 +37,7 @@ pip install labchronicle_hidecode
 To remove the extension, execute:
 
 ```bash
-pip uninstall labchronicle_hidecode
+pip uninstall jupyterlab_hidecode
 ```
 
 ## Contributing
@@ -53,7 +52,7 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Change directory to the labchronicle_hidecode directory
+# Change directory to the jupyterlab_hidecode directory
 # Install package in development mode
 pip install -e "."
 # Link your development version of the extension with JupyterLab
@@ -82,12 +81,12 @@ jupyter lab build --minimize=False
 ### Development uninstall
 
 ```bash
-pip uninstall labchronicle_hidecode
+pip uninstall jupyterlab_hidecode
 ```
 
 In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
 command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `labchronicle-hidecode` within that folder.
+folder is located. Then you can remove the symlink named `jupyterlab-hidecode` within that folder.
 
 ### Testing the extension
 

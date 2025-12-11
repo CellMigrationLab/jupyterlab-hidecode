@@ -8834,18 +8834,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"labchronicle-hidecode-ui-tests@workspace:ui-tests":
+"jupyterlab-hidecode-ui-tests@workspace:ui-tests":
   version: 0.0.0-use.local
-  resolution: "labchronicle-hidecode-ui-tests@workspace:ui-tests"
+  resolution: "jupyterlab-hidecode-ui-tests@workspace:ui-tests"
   dependencies:
     "@jupyterlab/galata": ^5.0.0
     "@playwright/test": ^1.32.0
   languageName: unknown
   linkType: soft
 
-"labchronicle-hidecode@workspace:.":
+"jupyterlab-hidecode@workspace:.":
   version: 0.0.0-use.local
-  resolution: "labchronicle-hidecode@workspace:."
+  resolution: "jupyterlab-hidecode@workspace:."
   dependencies:
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/apputils": ^4.0.0

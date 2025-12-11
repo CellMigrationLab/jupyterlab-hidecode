@@ -1,7 +1,7 @@
 {
-  "name": "labchronicle-hidecode-ui-tests",
+  "name": "jupyterlab-hidecode-ui-tests",
   "version": "1.0.0",
-  "description": "JupyterLab labchronicle-hidecode Integration Tests",
+  "description": "JupyterLab jupyterlab-hidecode Integration Tests",
   "private": true,
   "scripts": {
     "start": "jupyter lab --config jupyter_server_test_config.py",

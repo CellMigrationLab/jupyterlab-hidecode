@@ -3,15 +3,15 @@
     https://jupyterlab.readthedocs.io/en/stable/developer/css.html
 */
 
-.jp-labchronicle-hidecode-locked .jp-input-placeholder {
+.jp-jupyterlab-hidecode-locked .jp-input-placeholder {
   font-style: italic;
 }
 
-.jp-labchronicle-hidecode-locked .jp-collapser {
+.jp-jupyterlab-hidecode-locked .jp-collapser {
   position: relative;
 }
 
-.jp-labchronicle-run-button {
+.jp-jupyterlab-run-button {
   border: none;
   background: var(--jp-ui-font-color1);
   display: flex;
@@ -32,16 +32,16 @@
   transition: opacity 0.15s ease;
 }
 
-.jp-labchronicle-run-button:hover {
+.jp-jupyterlab-run-button:hover {
   opacity: 1;
 }
 
-.jp-labchronicle-run-button:focus {
+.jp-jupyterlab-run-button:focus {
   opacity: 1;
   outline: 1px solid var(--jp-border-color1);
 }
 
-.jp-labchronicle-run-button-icon {
+.jp-jupyterlab-run-button-icon {
   width: 12px;
   height: 12px;
   display: inline-flex;
@@ -49,35 +49,35 @@
   justify-content: center;
 }
 
-.jp-labchronicle-run-button-icon svg {
+.jp-jupyterlab-run-button-icon svg {
   width: 100%;
   height: 100%;
   fill: var(--jp-layout-color0);
   opacity: 0.95;
 }
 
-.jp-labchronicle-run-button-running {
+.jp-jupyterlab-run-button-running {
   opacity: 0.15;
   background: var(--jp-brand-color1);
-  animation: jp-labchronicle-run-pulse 1s ease-in-out infinite;
+  animation: jp-jupyterlab-run-pulse 1s ease-in-out infinite;
   box-shadow: 0 0 6px rgb(0 0 0 / 30%);
 }
 
-.jp-labchronicle-run-button-running::after {
+.jp-jupyterlab-run-button-running::after {
   content: '';
   width: 10px;
   height: 10px;
   border: 2px solid var(--jp-layout-color0);
   border-top-color: transparent;
   border-radius: 50%;
-  animation: jp-labchronicle-spinner 0.8s linear infinite;
+  animation: jp-jupyterlab-spinner 0.8s linear infinite;
   position: absolute;
   top: 2.5px;
   left: 2.5px;
   transform: translate(-50%, -50%);
 }
 
-@keyframes jp-labchronicle-spinner {
+@keyframes jp-jupyterlab-spinner {
   from {
     transform: rotate(0deg);
   }
@@ -87,7 +87,7 @@
   }
 }
 
-@keyframes jp-labchronicle-run-pulse {
+@keyframes jp-jupyterlab-run-pulse {
   0%,
   100% {
     opacity: 0.9;
@@ -98,7 +98,7 @@
   }
 }
 
-.jp-labchronicle-show-code-button {
+.jp-jupyterlab-show-code-button {
   background-color: var(--jp-layout-color1);
   border: 1px solid var(--jp-ui-font-color2);
   border-radius: 4px;
@@ -107,12 +107,12 @@
   font-size: 12px;
 }
 
-.jp-labchronicle-show-code-button:hover {
+.jp-jupyterlab-show-code-button:hover {
   border-color: var(--jp-brand-color1);
   color: var(--jp-brand-color1);
 }
 
-.jp-labchronicle-show-code-button:focus {
+.jp-jupyterlab-show-code-button:focus {
   border-color: var(--jp-brand-color1);
   color: var(--jp-brand-color1);
 }

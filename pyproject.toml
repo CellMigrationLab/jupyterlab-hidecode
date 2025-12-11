@@ -3,7 +3,7 @@ requires = ["hatchling>=1.18.0", "jupyterlab>=4.0.0,<5", "hatch-nodejs-version"]
 build-backend = "hatchling.build"
 
 [project]
-name = "labchronicle_hidecode"
+name = "jupyterlab_hidecode"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
@@ -32,24 +32,24 @@ source = "nodejs"
 fields = ["description", "authors", "urls"]
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["labchronicle_hidecode/labextension"]
+artifacts = ["jupyterlab_hidecode/labextension"]
 exclude = [".github", "binder"]
 
 [tool.hatch.build.targets.wheel.shared-data]
-"labchronicle_hidecode/labextension" = "share/jupyter/labextensions/labchronicle-hidecode"
-"install.json" = "share/jupyter/labextensions/labchronicle-hidecode/install.json"
+"jupyterlab_hidecode/labextension" = "share/jupyter/labextensions/jupyterlab-hidecode"
+"install.json" = "share/jupyter/labextensions/jupyterlab-hidecode/install.json"
 
 [tool.hatch.build.hooks.version]
-path = "labchronicle_hidecode/_version.py"
+path = "jupyterlab_hidecode/_version.py"
 
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder>=0.5"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
-    "labchronicle_hidecode/labextension/static/style.js",
-    "labchronicle_hidecode/labextension/package.json",
+    "jupyterlab_hidecode/labextension/static/style.js",
+    "jupyterlab_hidecode/labextension/package.json",
 ]
-skip-if-exists = ["labchronicle_hidecode/labextension/static/style.js"]
+skip-if-exists = ["jupyterlab_hidecode/labextension/static/style.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
 build_cmd = "build:prod"
@@ -59,7 +59,7 @@ npm = ["jlpm"]
 build_cmd = "install:extension"
 npm = ["jlpm"]
 source_dir = "src"
-build_dir = "labchronicle_hidecode/labextension"
+build_dir = "jupyterlab_hidecode/labextension"
 
 [tool.jupyter-releaser.options]
 version_cmd = "hatch version"
