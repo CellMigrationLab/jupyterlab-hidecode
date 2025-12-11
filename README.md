@@ -2,24 +2,25 @@
 
 [![jupyterlab-hidecode](https://labextensions.dev/api/badge/jupyterlab-hidecode?metric=downloads&leftColor=%23555&rightColor=%23F37620&style=flat)](https://labextensions.dev/extensions/jupyterlab-hidecode)
 
-Hide/show notebook inputs with a Colab-like play button parameter widgets in JupyterLab.
+A JupyterLab extension to hide/show notebook inputs (permanently, without accidental uncollapse) with a Colab-like play button.
 
 ## Features
 
-- Toolbar button and command (`Accel+Shift+H`) to hide/show the active cell input without touching metadata manually.
-- Command to collapse every cell tagged with the configured hide tag (defaults to `hide_input` so it stays compatible with the classic `hide_input` nbextension).
-- Optional auto-hide when a notebook opens; this lets JupyterLab Hide Code distribute notebooks that arrive already collapsed but can be expanded on demand.
-- Hidden cells stay locked even if you click into them—only the JupyterLab Hide Code shortcut/button changes their visibility, preventing accidental uncollapse while reading.
-- Locked cells get a small “run” affordance next to the collapser so you can execute them in place without expanding the code.
-- Settings exposed through JupyterLab’s Advanced Settings Editor to change the tag name or disable the auto-hide behavior altogether.
+### 1.- Show/Hide Code
 
-## Usage
+Allows you to hide the code in a way where it cannot be accidentally uncollapsed by clicking into the cell. You can do this by clicking the notebook toolbar button 'Show/Hide Code' or using the keyboard shortcut `Ctrl+Shift+H` (Windows/Linux) or `Cmd+Shift+H` (Mac).
 
-1. Install the extension (instructions below) and restart JupyterLab.
-2. Tag any cells you would like hidden by default via **View → Cell Toolbar → Tags** and add the tag specified in the settings (`hide_input` by default).
-3. Use the notebook toolbar button (or press `Accel+Shift+H`) to toggle the currently active cell.
-4. Hit the “JupyterLab Hide Code: Hide cells tagged for JupyterLab Hide Code” command from the palette to apply the rule to the whole notebook on demand.
-5. Tweak defaults under **Settings → Advanced Settings Editor → JupyterLab Hide Code**.
+> Hidden cells stay locked even if you click into them—only the JupyterLab Hide Code shortcut/button changes their visibility, preventing accidental uncollapse while reading.
+
+![Video showing how to use the Show/Hide Code button](docs/JupyterLab_HideCode-Show_Hide_Button.gif)
+
+### 2.- Colab-like Run Button for Locked Cells
+
+When a cell is hidden/locked, a small "play" button appears next to the cell's collapser. Clicking this button runs the cell in place without expanding it.
+
+> This feature is inspired by Google Colab's behavior, allowing users to execute code without revealing it. The regular cell execution methods (Shift+Enter, Run button) will still work as usual without expanding the cell.
+
+![Video showing how to use the Run Button for locked cells](docs/JupyterLab_HideCode-Run_Button.gif)
 
 ## Requirements
 
@@ -40,75 +41,3 @@ To remove the extension, execute:
 ```bash
 pip uninstall jupyterlab_hidecode
 ```
-
-## Contributing
-
-### Development install
-
-Note: You will need NodeJS to build the extension package.
-
-The `jlpm` command is JupyterLab's pinned version of
-[yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
-`yarn` or `npm` in lieu of `jlpm` below.
-
-```bash
-# Clone the repo to your local environment
-# Change directory to the jupyterlab_hidecode directory
-# Install package in development mode
-pip install -e "."
-# Link your development version of the extension with JupyterLab
-jupyter labextension develop . --overwrite
-# Rebuild extension Typescript source after making changes
-jlpm build
-```
-
-You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
-
-```bash
-# Watch the source directory in one terminal, automatically rebuilding when needed
-jlpm watch
-# Run JupyterLab in another terminal
-jupyter lab
-```
-
-With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
-
-By default, the `jlpm build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
-
-```bash
-jupyter lab build --minimize=False
-```
-
-### Development uninstall
-
-```bash
-pip uninstall jupyterlab_hidecode
-```
-
-In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
-command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `jupyterlab-hidecode` within that folder.
-
-### Testing the extension
-
-#### Frontend tests
-
-This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
-
-To execute them, execute:
-
-```sh
-jlpm
-jlpm test
-```
-
-#### Integration tests
-
-This extension uses Playwright for the integration tests (aka user level tests).
-More precisely, the JupyterLab helper [Galata](https://github.com/jupyterlab/jupyterlab/tree/master/galata) is used to handle testing the extension in JupyterLab.
-
-More information are provided within the [ui-tests](./ui-tests/README.md) README.
-
-### Packaging the extension
-
-See [RELEASE](RELEASE.md)

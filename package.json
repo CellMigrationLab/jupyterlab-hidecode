@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-hidecode",
-  "version": "0.1.1",
+  "version": "0.0.1",
   "description": "Hide/show notebook inputs with a Colab-like play button parameter widgets in JupyterLab.",
   "keywords": [
     "jupyter",
