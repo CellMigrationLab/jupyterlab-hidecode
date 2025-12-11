@@ -3,6 +3,7 @@
 [![jupyterlab-hidecode](https://labextensions.dev/api/badge/jupyterlab-hidecode?metric=downloads&leftColor=%23555&rightColor=%23F37620&style=flat)](https://labextensions.dev/extensions/jupyterlab-hidecode)
 
 Hide/show notebook inputs with a Colab-like play button parameter widgets in JupyterLab.
+
 ## Features
 
 - Toolbar button and command (`Accel+Shift+H`) to hide/show the active cell input without touching metadata manually.
